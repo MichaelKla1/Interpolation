@@ -1,11 +1,7 @@
 import math
 
-import sympy as sp
-x = sp.symbols('x')
-
-polinom = x**4+x**3-3*x**2
 points = [[0,0],[1,0.8415],[2,0.9093],[3,0.1411],[4,-0.7568],[5,-0.9589],[6,-0.2794]] #left number in pair - x, right number - y
-XToFind = 7
+XToFind = 2.5
 
 def linearInterpolation(points,XToFind):
     """
