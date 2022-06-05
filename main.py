@@ -340,6 +340,7 @@ print("Nivul interpolation:")
 result = nivulInterpolation(points,XToFind)
 print("The result is: " + str(result))
 
+
 print("Spline interpolation:")
 result = splineInterpolation(points, XToFind)
 if result is None:
