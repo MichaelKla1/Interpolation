@@ -23,7 +23,32 @@ def linearInterpolation(points,XToFind):
     else:
         return result
 
-
+def polynomialInterpolation(points,XToFind):
+    """
+    Polynomial interpolation. Returns f(XToFind) based on the points table
+    :param points: table of points
+    :param XToFind: X to find f(X) based on the points table
+    :return: f(XToFind) based on the points table
+    """
+    i = 0
+    matrix = []
+    resvec = []
+    while (i < len(points)):
+        lineToAppend = []
+        j=0
+        while (j<len(points)):
+            lineToAppend.append(math.pow(points[i][0],j))
+            j = j + 1
+        matrix.append(lineToAppend)
+        resvec.append(points[i][1])
+        i = i + 1
+    prefixValues = solutionOfMatrixByGaussElimination(matrix,resvec)
+    i = 0
+    result = 0
+    while (i < len(prefixValues)):
+        result = result + math.pow(XToFind,i)*prefixValues[i]
+        i = i + 1
+    return result
 
 def lagrangeInterpolation(points,XToFind):
     """
