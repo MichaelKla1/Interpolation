@@ -1,7 +1,7 @@
 import math
 
-points = [[0,0],[1,0.8415],[2,0.9093],[3,0.1411],[4,-0.7568],[5,-0.9589],[6,-0.2794]] #left number in pair - x, right number - y
-XToFind = 2.5
+points = [[1.2,1.5],[1.3,2.69],[1.4,3.9],[1.5,5.12],[1.6,7.37]] #left number in pair - x, right number - y
+XToFind = 1.42
 
 def linearInterpolation(points,XToFind):
     """
@@ -33,6 +33,7 @@ def polynomialInterpolation(points,XToFind):
     i = 0
     matrix = []
     resvec = []
+    print("Building matrix and solution vector:")
     while (i < len(points)):
         lineToAppend = []
         j=0
@@ -41,10 +42,16 @@ def polynomialInterpolation(points,XToFind):
             j = j + 1
         matrix.append(lineToAppend)
         resvec.append(points[i][1])
+        print(str(i+1) + ":\nmatrix: "+str(matrix)+"\nsolution vedtor: "+str(resvec))
         i = i + 1
+    print("Got matrix:")
+    print(str(matrix))
+    print("Got solution vector:")
+    print(str(resvec))
     prefixValues = solutionOfMatrixByGaussElimination(matrix,resvec)
     i = 0
     result = 0
+    print("Solving system by Gauss Zydel method and finding the needed value:")
     while (i < len(prefixValues)):
         result = result + math.pow(XToFind,i)*prefixValues[i]
         i = i + 1
@@ -85,6 +92,7 @@ def nivulInterpolation(points,XToFind):
     PArray = []
     tempPArray = []
     step = 0
+    print("Printing arrays of P(m,n) each Nivul iteration:")
     while step < len(points):
         i = 0
         while (step + i < len(points)):
@@ -95,6 +103,7 @@ def nivulInterpolation(points,XToFind):
                 tempPArray.append(valueToAppend)
             i = i + 1
         PArray = tempPArray.copy()
+        print(str(step)+ ": " + str(PArray))
         tempPArray.clear()
         step = step + 1
     return PArray[0]
